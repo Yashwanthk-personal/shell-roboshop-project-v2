@@ -102,7 +102,7 @@ app_setup(){
     validate $? "Unzipping ${app_name}"
 }
 
-system_setup(){
+systemd_setup(){
     sed -i "s/DOMAIN_NAME/${domain_name}/g" "${scripts_dir}/$app_name.service"
     cp "${scripts_dir}/${app_name}.service" /etc/systemd/system/${app_name}.service
 
