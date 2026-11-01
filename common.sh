@@ -5,7 +5,7 @@ logs_folder="/var/log/roboshop"
 logs_file="${logs_folder}/${0}.log"
 script_dir=$(dirname "$(realpath $0)")
 repos_dir=${script_dir}/repos
-service_file_dir=${script_dir}/services
+service_file_dir=${script_dir}/service
 domain_name="devops92s.store"
 R="\e[31m"
 G="\e[32m"
@@ -103,7 +103,7 @@ app_setup(){
 }
 
 systemd_setup(){
-    sed -i "s/DOMAIN_NAME/${domain_name}/g" "${scripts_dir}/$app_name.service"
+    sed -i "s/DOMAIN_NAME/${domain_name}/g" "${service_file_dir}/${app_name}.service"
     cp "${scripts_dir}/${app_name}.service" /etc/systemd/system/${app_name}.service
 
     systemctl daemon-reload &>> $logs_file
