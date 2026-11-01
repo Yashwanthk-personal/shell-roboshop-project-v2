@@ -1,6 +1,6 @@
 #!/bin/bash
 
-user_id=#(id -u)
+user_id=$(id -u)
 logs_folder="/var/log/roboshop"
 logs_file="${logs_folder}/${0}.log"
 script_dir=$(dirname "$(realpath $0)")
