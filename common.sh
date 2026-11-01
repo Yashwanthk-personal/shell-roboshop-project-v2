@@ -104,7 +104,7 @@ app_setup(){
 
 systemd_setup(){
     sed -i "s/DOMAIN_NAME/${domain_name}/g" "${service_file_dir}/${app_name}.service"
-    cp "${scripts_dir}/${app_name}.service" /etc/systemd/system/${app_name}.service
+    cp "${service_file_dir}/${app_name}.service" /etc/systemd/system/${app_name}.service
 
     systemctl daemon-reload &>> $logs_file
     systemctl enable $app_name &>> $logs_file
