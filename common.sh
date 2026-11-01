@@ -23,10 +23,6 @@ timestamp(){
     date "+%F %T"
 }
 
-mkdir -p logs_folder
-
-echo -e "$(timestamp) [INFO] ======== Script Started Execution ==========" | tee -a $logs_file
-
 validate(){
     if [ $1 -ne 0 ]; then  
         echo -e "$(timestamp) [ERROR] ${2}.... ${R}FAILURE${N}" | tee -a $logs_file
@@ -35,6 +31,11 @@ validate(){
         echo -e "$(timestamp) [INFO] ${2}.... ${G}SUCCESS${N}" | tee -a $logs_file
     fi
 }
+
+mkdir -p logs_folder
+validate $? "Creatign Logs folder"
+
+echo -e "$(timestamp) [INFO] ======== Script Started Execution ==========" | tee -a $logs_file
 
 nodejs_setup(){
     dnf module disable nodejs -y &>> $logs_file
