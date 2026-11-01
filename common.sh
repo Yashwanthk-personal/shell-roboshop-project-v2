@@ -32,7 +32,7 @@ validate(){
     fi
 }
 
-mkdir -p logs_folder
+mkdir -p $logs_folder
 validate $? "Creatign Logs folder"
 
 echo -e "$(timestamp) [INFO] ======== Script Started Execution ==========" | tee -a $logs_file
@@ -103,8 +103,8 @@ app_setup(){
 }
 
 system_setup(){
-    sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/$app_name.service"
-    cp "$scripts_dir/$app_name.service" /etc/systemd/system/$app_name.service
+    sed -i "s/DOMAIN_NAME/$domain_name/g" "${scripts_dir}/$app_name.service"
+    cp "${scripts_dir}/${app_name}.service" /etc/systemd/system/${app_name}.service
 
     systemctl daemon-reload &>> $logs_file
     systemctl enable $app_name &>> $logs_file
